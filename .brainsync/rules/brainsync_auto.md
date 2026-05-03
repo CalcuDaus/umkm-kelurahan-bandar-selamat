@@ -1,7 +1,7 @@
 
 
 # Project Memory — umkm-kelurahan-bandar-selamat
-> 19 notes | Score threshold: >40
+> 25 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
