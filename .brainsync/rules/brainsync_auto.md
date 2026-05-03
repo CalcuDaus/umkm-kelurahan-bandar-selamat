@@ -1,6 +1,6 @@
 
 
-# Project Memory — Web-desa
+# Project Memory — umkm-kelurahan-bandar-selamat
 > 19 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
@@ -23,8 +23,6 @@
 - **convention in .gitignore**
 - **convention in .gitignore**
 - **convention in .gitignore**
-- **Strengthened types Updated**
-- **Strengthened types Recent**
 
 ## Project Standards
 

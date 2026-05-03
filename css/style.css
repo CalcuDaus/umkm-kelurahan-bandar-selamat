@@ -92,13 +92,14 @@ main {
     border-radius: var(--card-radius);
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
     display: flex;
     flex-direction: column;
     height: 100%;
     position: relative;
     opacity: 0;
     transform: translateY(20px);
+    border: 1px solid transparent;
 }
 
 .card.visible {
@@ -107,8 +108,9 @@ main {
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: rgba(37, 211, 102, 0.3);
 }
 
 .card-link {
@@ -134,11 +136,52 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: brightness(1.1) contrast(1.15);
 }
 
-.card:hover .card-image {
-    transform: scale(1.05);
+.card-image-wrapper:hover .card-image {
+    transform: scale(1.08);
+}
+
+/* Click Hint */
+.click-hint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    backdrop-filter: blur(2px);
+}
+
+.card-image-wrapper:hover .click-hint {
+    opacity: 1;
+}
+
+.click-hint svg {
+    margin-bottom: 0.5rem;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.card-image-wrapper:hover .click-hint svg {
+    transform: translateY(0);
+}
+
+.click-hint span {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Badge */
@@ -146,17 +189,18 @@ main {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(4px);
-    color: var(--primary-green);
-    padding: 0.35rem 0.85rem;
+    background: rgba(10, 38, 24, 0.75);
+    backdrop-filter: blur(8px);
+    color: var(--white);
+    padding: 0.45rem 1rem;
     border-radius: 2rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Card Body */
@@ -169,9 +213,17 @@ main {
 
 .product-title {
     font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: auto; /* Pushes the action button to the bottom */
-    padding-bottom: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--primary-green);
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    flex-grow: 1;
 }
 
 /* Card Action / WhatsApp Button */
@@ -179,7 +231,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1rem;
+    padding-top: 1.25rem;
     border-top: 1px solid #f3f4f6;
     color: var(--accent-green);
     font-weight: 600;
@@ -187,29 +239,30 @@ main {
 }
 
 .wa-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    letter-spacing: -0.01em;
 }
 
 .wa-icon-wrapper {
     background: var(--light-green);
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background var(--transition-speed), transform var(--transition-speed);
+    transition: all var(--transition-speed);
 }
 
 .wa-icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     color: var(--accent-green);
 }
 
 .card:hover .wa-icon-wrapper {
     background: var(--accent-green);
-    transform: scale(1.1);
+    transform: rotate(15deg) scale(1.1);
 }
 
 .card:hover .wa-icon-wrapper .wa-icon {
@@ -226,6 +279,7 @@ main {
 .placeholder-card:hover {
     transform: none;
     box-shadow: none;
+    border-color: #d1d5db;
 }
 
 .placeholder-image {
@@ -259,20 +313,142 @@ main {
 /* Footer */
 .footer {
     text-align: center;
-    padding: 2rem 0;
+    padding: 3rem 0;
     color: var(--text-muted);
     font-size: 0.9rem;
     border-top: 1px solid #e5e7eb;
 }
 
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: auto;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    width: 90%;
+    max-width: 650px;
+    position: relative;
+    transform: scale(0.9) translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+}
+
+.modal.show .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.close-modal, .close-halal {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    color: var(--text-muted);
+    font-size: 2.25rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s;
+    line-height: 1;
+}
+
+.close-modal:hover, .close-halal:hover {
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.25rem;
+    padding: 0.5rem 0 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-green) #f1f1f1;
+    perspective: 1000px; /* For smoother 3D-like scale */
+}
+
+.carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 10px;
+}
+
+.carousel img {
+    flex: 0 0 100%;
+    width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+    scroll-snap-align: center;
+    border-radius: 1.5rem;
+    background: #f8fafc;
+    cursor: zoom-in;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+}
+
+.carousel img.zoomed {
+    transform: scale(1.5);
+    cursor: zoom-out;
+}
+
+.btn-halal {
+    display: inline-block;
+    width: auto;
+    min-width: 200px;
+    margin: 1.5rem auto 0;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, var(--accent-green), #1ea34d);
+    color: var(--white);
+    border: none;
+    border-radius: 3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 15px rgba(37, 211, 102, 0.2);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-halal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .header {
-        padding: 2.5rem 0 2rem;
+        padding: 3rem 0 2rem;
     }
 
     .logo {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .products-grid {
@@ -282,6 +458,11 @@ main {
     
     .card-body {
         padding: 1.25rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
     }
 }
 

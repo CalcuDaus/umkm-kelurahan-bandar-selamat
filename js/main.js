@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 },
                 "color": {
-                    "value": "#25D366" // Accent green
+                    "value": "#95a5a6" // Grey
                 },
                 "shape": {
                     "type": "circle",
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "line_linked": {
                     "enable": true,
                     "distance": 150,
-                    "color": "#25D366",
+                    "color": "#95a5a6",
                     "opacity": 0.3,
                     "width": 1
                 },
@@ -121,4 +121,103 @@ document.addEventListener('DOMContentLoaded', () => {
             "retina_detect": true
         });
     }
+
+    // Modal Logic
+    const productModal = document.getElementById('product-modal');
+    const halalModal = document.getElementById('halal-modal');
+    const productCarousel = document.getElementById('product-carousel');
+    const halalCarousel = document.getElementById('halal-carousel');
+    const btnCheckHalal = document.getElementById('btn-check-halal');
+    
+    const closeProductBtn = document.querySelector('.close-modal');
+    const closeHalalBtn = document.querySelector('.close-halal');
+    
+    let currentHalalImages = [];
+
+    // Open Product Modal
+    document.querySelectorAll('.card-image-wrapper').forEach(wrapper => {
+        wrapper.addEventListener('click', () => {
+            const products = JSON.parse(wrapper.getAttribute('data-products') || '[]');
+            const halal = JSON.parse(wrapper.getAttribute('data-halal') || '[]');
+            
+            if (products.length === 0) return; // No products to show
+            
+            // Populate Product Carousel
+            productCarousel.innerHTML = products.map(src => `<img src="${src}" alt="Product Detail">`).join('');
+            
+            // Setup Halal Button
+            if (halal.length > 0) {
+                currentHalalImages = halal;
+                btnCheckHalal.style.display = 'block';
+            } else {
+                currentHalalImages = [];
+                btnCheckHalal.style.display = 'none';
+            }
+            
+            productModal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+
+    // Zoom Logic for Carousel Images
+    const handleZoom = (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.target.classList.toggle('zoomed');
+        }
+    };
+
+    productCarousel.addEventListener('click', handleZoom);
+    halalCarousel.addEventListener('click', handleZoom);
+
+    // Reset Zoom function
+    const resetZoom = () => {
+        document.querySelectorAll('.carousel img.zoomed').forEach(img => {
+            img.classList.remove('zoomed');
+        });
+    };
+
+    // Close Product Modal
+    closeProductBtn.addEventListener('click', () => {
+        productModal.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+        resetZoom();
+        // Wait for transition before clearing content
+        setTimeout(() => {
+            if(!productModal.classList.contains('show')) productCarousel.innerHTML = '';
+        }, 300);
+    });
+
+    // Open Halal Modal
+    btnCheckHalal.addEventListener('click', () => {
+        if (currentHalalImages.length > 0) {
+            halalCarousel.innerHTML = currentHalalImages.map(src => `<img src="${src}" alt="Sertifikat Halal">`).join('');
+            // Hide product modal, show halal modal
+            productModal.classList.remove('show');
+            halalModal.classList.add('show');
+            resetZoom();
+        }
+    });
+
+    // Close Halal Modal
+    closeHalalBtn.addEventListener('click', () => {
+        halalModal.classList.remove('show');
+        // Bring back product modal
+        productModal.classList.add('show');
+        resetZoom();
+    });
+
+    // Close Modals on outside click
+    window.addEventListener('click', (e) => {
+        if (e.target === productModal) {
+            productModal.classList.remove('show');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+        if (e.target === halalModal) {
+            halalModal.classList.remove('show');
+            productModal.classList.add('show');
+            resetZoom();
+        }
+    });
+
 });
