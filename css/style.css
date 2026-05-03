@@ -21,10 +21,20 @@
 
 body {
     font-family: 'Outfit', sans-serif;
-    background-color: var(--bg-color);
+    background-color: transparent;
     color: var(--text-main);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--bg-color);
 }
 
 /* Typography & Utilities */
@@ -49,7 +59,7 @@ a {
 .header {
     padding: 3rem 0;
     text-align: center;
-    background: linear-gradient(to bottom, var(--light-green) 0%, var(--bg-color) 100%);
+    background: transparent;
 }
 
 .logo {
