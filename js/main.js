@@ -85,6 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     closeProductBtn.addEventListener('click', closeAllModals);
+
+    // Open Halal Modal
+    btnCheckHalal.addEventListener('click', () => {
+        if (currentHalalImages.length > 0) {
+            halalCarousel.innerHTML = currentHalalImages.map(src => `<img src="${src}" alt="Sertifikat Halal">`).join('');
+            // Hide product modal, show halal modal
+            productModal.classList.remove('show');
+            halalModal.classList.add('show');
+            resetZoom();
+        }
+    });
+
     closeHalalBtn.addEventListener('click', () => {
         halalModal.classList.remove('show');
         productModal.classList.add('show');
