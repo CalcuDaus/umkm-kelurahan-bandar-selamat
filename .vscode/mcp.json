@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "brainsync": {
+      "command": "node",
+      "args": [
+        "c:\\Users\\mhdfi\\.antigravity\\extensions\\dawoodahmad.brainsync-3.0.12-universal\\dist\\mcp-server.js"
+      ],
+      "type": "stdio",
+      "env": {
+        "BRAINSYNC_ENV_FILE": "C:\\Users\\mhdfi\\.bsync_core\\web-desa\\mcp-secret-env.json"
+      }
+    }
+  }
+}
