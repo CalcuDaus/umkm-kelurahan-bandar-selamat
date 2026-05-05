@@ -1,7 +1,7 @@
 
 
 # Project Memory — umkm-kelurahan-bandar-selamat
-> 25 notes | Score threshold: >40
+> 27 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -21,6 +21,7 @@
 ## Active: `.`
 
 - **convention in .gitignore**
+- **what-changed in index.html**
 - **convention in .gitignore**
 - **convention in .gitignore**
 
@@ -29,11 +30,11 @@
 - convention in .gitignore
 - convention in .gitignore
 - convention in .gitignore
-- Version your API from day 1 (/api/v1/)
-- Use consistent response format across all endpoints
-- Implement soft delete for important data — don't hard delete without confirmation
-- Handle timezone correctly — store UTC, display in user's timezone
-- Make layouts responsive from the start — mobile-first approach
+- Extract repeated class patterns into components
+- Use responsive prefixes consistently (sm:, md:, lg:, xl:)
+- Don't use arbitrary values when a utility class exists
+- Use .dockerignore to exclude unnecessary files
+- Use multi-stage builds to reduce image size
 
 ## Verified Best Practices
 

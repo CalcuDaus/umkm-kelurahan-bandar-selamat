@@ -50,10 +50,6 @@ data_map = {
     "11": {
         "products": ["attachment/lingkungan-11/WhatsApp Image 2026-05-01 at 6.10.40 PM.jpeg"],
         "halal": ["attachment/lingkungan-11/sertif-halal-lingkungan11.jpg"]
-    },
-    "12": {
-        "products": ["attachment/lingkungan-12/WhatsApp Image 2026-05-01 at 6.10.49 PM.jpeg", "attachment/lingkungan-12/39131f8e-4623-4abe-bc1e-bf9c39441364.png"],
-        "halal": []
     }
 }
 

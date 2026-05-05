@@ -1,7 +1,7 @@
-# Rencana Pengembangan Landing Page Desa Banyoemas (Produk UMKM Lingkungan 1-12)
+# Rencana Pengembangan Landing Page Desa Banyoemas (Produk UMKM Lingkungan 1-11)
 
 ## 1. Tujuan
-Membuat landing page desa yang modern, responsif (sangat optimal untuk mobile), dan cepat menggunakan HTML, CSS, dan JS native. Desain akan menggunakan referensi screenshot dengan gaya *modern rounded cards* yang besar dan elegan, serta nuansa hijau/alami yang bersih. Fokus utama adalah menampilkan produk dari tiap lingkungan (Lingkungan 1 hingga 12) yang dapat diklik langsung menuju WhatsApp penjual.
+Membuat landing page desa yang modern, responsif (sangat optimal untuk mobile), dan cepat menggunakan HTML, CSS, dan JS native. Desain akan menggunakan referensi screenshot dengan gaya *modern rounded cards* yang besar dan elegan, serta nuansa hijau/alami yang bersih. Fokus utama adalah menampilkan produk dari tiap lingkungan (Lingkungan 1 hingga 11) yang dapat diklik langsung menuju WhatsApp penjual.
 
 ## 2. Struktur Direktori
 ```text
@@ -33,7 +33,7 @@ Web-desa/
   - *Lazy Loading* pada gambar (`loading="lazy"`).
   - *CSS Variables* untuk konsistensi.
   - Meminimalkan ukuran CSS dan tidak menggunakan library eksternal berukuran besar.
-- **Data UMKM**: Menampilkan seluruh 12 lingkungan sesuai permintaan. Untuk data yang belum lengkap (seperti Lingkungan 7 dan 10), akan dibuatkan *placeholder* "Menunggu Data".
+- **Data UMKM**: Menampilkan seluruh 11 lingkungan sesuai permintaan. Untuk data yang belum lengkap (seperti Lingkungan 7 dan 10), akan dibuatkan *placeholder* "Menunggu Data".
 
 ## 5. Detail Data yang Akan Diimplementasikan
 
@@ -50,14 +50,13 @@ Web-desa/
 | Lingkungan 9 | Bakery Widayu Astuti | 0822 7519 3889 | 6282275193889 | `attachment/lingkungan-9/` |
 | Lingkungan 10 | *(Belum ada data)* | - | - | `attachment/lingkungan-10/` |
 | Lingkungan 11 | Mie Ayam Tebet | 0895 3092 4443 | 6289530924443 | `attachment/lingkungan-11/` |
-| Lingkungan 12 | KEV & KEZ PAYET | 0822 7743 9911 | 6282277439911 | `attachment/lingkungan-12/` |
 
 ## 6. Langkah Eksekusi (Prompt Instruksi untuk Model)
 Untuk agen/model yang akan mengeksekusi kode, ikuti langkah ini:
 1. **Buat file `index.html`**:
    - Set tag meta viewport.
    - Buat header/navigasi yang terinspirasi dari referensi (judul desa misal: "Desa Banyoemas" atau disesuaikan).
-   - Buat section `grid` berisi 12 kartu (`div.card`).
+   - Buat section `grid` berisi 11 kartu (`div.card`).
    - Gunakan format link WA: `<a href="https://wa.me/62..."><img src="..." loading="lazy"></a>`.
    - Gunakan path gambar relatif menunjuk ke folder `attachment/lingkungan-[n]/[namafile]`.
 2. **Buat file `css/style.css`**:
